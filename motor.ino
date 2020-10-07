@@ -9,3 +9,26 @@ void robotRun(int rectify){
   analogWrite(MOTOR_LEFT, lPower);
   analogWrite(MOTOR_RIGHT, rPower);
 }
+
+void robotStop(){
+  analogWrite(MOTOR_LEFT, 0);
+  analogWrite(MOTOR_RIGHT, 1);
+}
+bool collidDetect(int pin){
+  bool state = digitalRead(pin);
+  if(state != lastDebounceState)
+  {
+    lastDebounceTime = millis();
+    lastDebounceState = state;
+  }
+  if(millis() - lastDebounceTime < debounceDelay)
+  {
+    return lastReadState;
+  }
+  else
+  {
+    lastReadState = state;
+    return state;
+  }
+    
+}
