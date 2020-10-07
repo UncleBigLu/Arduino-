@@ -1,6 +1,6 @@
 # pragma once
 
-void robotRun(int rectify);
+void robotRun(int rectify, bool runDirection);
 void robotStop();
 bool stopFlag;
 // Collid detect functions
@@ -11,3 +11,5 @@ bool lastDebounceState = true;
 bool collidDetect(int pin);
 
 void pumpDrive();
+
+int humidityDetect();
