@@ -4,7 +4,7 @@
 #include "motor.h"
 #include "timerIntServo.h"
 
-const int flowerPotNum = 1;
+const int flowerPotNum = 4;
 int flowerPotCounter = 0;
 // True for forward, false for back
 bool runDir = true;
@@ -14,14 +14,16 @@ void setup() {
   // Initial motors
   pinMode(MOTOR_LEFT, OUTPUT);
   pinMode(MOTOR_RIGHT, OUTPUT);
+  pinMode(PUMP, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(10, OUTPUT);
   digitalWrite(6, LOW);
   digitalWrite(10, LOW);
+  digitalWrite(PUMP, LOW);
   // Initial PID
   positionOffset = filterInitial();
   // Initial collide detect pins
-  pinMode(COLLID_FRONT, INPUT);
+  
   pinMode(COLLID_BACK, INPUT);
   stopFlag = true;
   // Initial servo timer
@@ -29,8 +31,11 @@ void setup() {
 
   Serial.println(positionOffset);
   delay(5000);
+  
 }
+
 int irLeft, irRight;
+
 void loop() {
   // Control the robot run straightly
   if(runDir == true)
@@ -55,13 +60,28 @@ void loop() {
     {
       flowerPotCounter++;
       robotStop();
-      delay(800);
-      if (humidityDetect() > 600)
+      delay(1500);if(Serial.available())
+  {
+    
+    int x = Serial.parseInt();
+    Serial.println(x);
+    updatePWM(1,x);
+    while(Serial.read() != -1);
+    
+  }
+      if (humidityDetect() > 300)
       {
         // water the flower
+        digitalWrite(PUMP, HIGH);
+        delay(700);
+        digitalWrite(PUMP, LOW);
+        delay(1500);
+        updatePWM(3,1040);
+        delay(1500);
         San_Diego();
       }
-
+      updatePWM(3,1040);
+      delay(800);
       stopFlag = false;
     }
     if ( collidDetect(COLLID_BACK) == 1)
@@ -80,7 +100,7 @@ void loop() {
       flowerPotCounter--;
       stopFlag = false;
     }
-    if(flowerPotCounter <= 0)
+    if(flowerPotCounter <= 1)
     {
       delay(1000);
       robotStop();

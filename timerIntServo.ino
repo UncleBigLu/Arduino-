@@ -58,23 +58,28 @@ bool updatePWM(const uint8_t &index, const uint16_t &lowPos)
 }
 
 void San_Diego(){
-  updatePWM(3, 1040);
-  delay(600);
-  updatePWM(2,2240);
+  
+//    updatePWM(0, 1600);
+//    delay(1000);
+//    updatePWM(0, 800);
+//    delay(1000);
+  updatePWM(2,2160);  // 转向碗
   delay(1000);
-  updatePWM(1,2400);
-  delay(600);
-  // updatePWM(0, 1000);
-  //delay(500);
-  updatePWM(1,2080);
-  delay(600);
-  updatePWM(2,1600);
+  updatePWM(1,2320);  // 低头
   delay(1000);
-  updatePWM(1, 2400);
+  updatePWM(0, 1360); // 夹子闭合
+  delay(1000);
+  //updatePWM(1,2080);  //抬头
+  updatePWM(1, 1600);
+  delay(1000);
+  updatePWM(2,1760);  // 转向花盆
+  delay(1000);
+  updatePWM(1, 2400); //低头
   delay(600);
-  // updatePWM(0,1400);
-  updatePWM(1,2080);
+  updatePWM(0,1600);  // 夹子打开
+  delay(800);
+  updatePWM(1,1600);  // 抬头
   delay(600);
-  updatePWM(2,1280);
+  updatePWM(2,1040);  // 转向车头
   delay(600);
 }

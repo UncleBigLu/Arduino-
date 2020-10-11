@@ -54,7 +54,6 @@ int humidityDetect(){
   for(int i = 0; i < 10; ++i)
     ret += analogRead(HUMIDITY);
   ret /= 10;
-  updatePWM(3,1040);
-  delay(800);
+ 
   return ret;
 }

@@ -10,7 +10,7 @@
 #define MOTOR_RIGHT 9
 #define MOTOR_RIGHT_BACK 10
 
-#define COLLID_FRONT 11
+
 #define COLLID_BACK 12
 
 #define SERVO0 3
@@ -19,3 +19,4 @@
 #define SERVO3 8 
 
 #define HUMIDITY A2
+#define PUMP 11
