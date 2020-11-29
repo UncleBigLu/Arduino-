@@ -5,6 +5,7 @@
 #include "timerIntServo.h"
 
 void setup() {
+  // Enable serial debug
   Serial.begin(115200);
   // Initial motors
   pinMode(MOTOR_LEFT, OUTPUT);
@@ -13,10 +14,11 @@ void setup() {
 
   // Initial PID
   positionOffset = filterInitial();
+  
   // Initial collide detect pins
-
   pinMode(COLLID_BACK, INPUT);
   stopFlag = true;
+  
   // Initial servo timer
   initPWM();
   

@@ -5,7 +5,9 @@ void robotRun(int rectify){
   if (rectify > 0)
     rPower -= rectify;
   if (rectify < -0)
-    lPower += rectify;;
+    lPower += rectify;
+
+  // 2/3 so that the robot won't become too fast
   analogWrite(MOTOR_LEFT, 2*lPower/3);
   analogWrite(MOTOR_RIGHT, 2*rPower/3);
 }
