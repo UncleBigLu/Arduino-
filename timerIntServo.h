@@ -2,8 +2,8 @@
 
 #include "pinDefination.h"
 
-#define SERVO_NUM 4
-#define SERVO_MAP {SERVO0, SERVO1, SERVO2, SERVO3}
+#define SERVO_NUM 5
+#define SERVO_MAP {SERVO0, SERVO1, SERVO2, SERVO3, HUM_SERVO}
 #define PWM_CYCLE_US 20000
 
 bool _PWMChangeFlag = false;

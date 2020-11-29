@@ -9,14 +9,12 @@ void setup() {
   // Initial motors
   pinMode(MOTOR_LEFT, OUTPUT);
   pinMode(MOTOR_RIGHT, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(10, OUTPUT);
-  digitalWrite(6,LOW);
-  digitalWrite(10,LOW);
+
+
   // Initial PID
   positionOffset = filterInitial();
   // Initial collide detect pins
-  pinMode(COLLID_FRONT, INPUT);
+
   pinMode(COLLID_BACK, INPUT);
   stopFlag = true;
   // Initial servo timer
@@ -31,10 +29,23 @@ void loop() {
   int dir = analogRead(IR_LEFT) - analogRead(IR_RIGHT);
   dir = filter(dir) - positionOffset;
   robotRun(pid(dir));
+  
   if( (collidDetect(COLLID_BACK) == 0) && (stopFlag == true) )
   {
     robotStop();
-    San_Diego();
+    if (humidityDetect() > 500)
+      {
+        // water the flower
+        digitalWrite(PUMP, HIGH);
+        delay(700);
+        digitalWrite(PUMP, LOW);
+        delay(1500);
+        // Fertilize
+        San_Diego();
+        // Raise the humidity detect arm
+        updatePWM(4, 1280);
+        delay(1500);
+      }
     stopFlag = false;
   }
   if( collidDetect(COLLID_BACK) == 1)

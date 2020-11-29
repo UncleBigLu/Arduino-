@@ -10,4 +10,6 @@ bool lastReadState = true;
 bool lastDebounceState = true;
 bool collidDetect(int pin);
 
-void pumpDrive();
+
+
+int humidityDetect();

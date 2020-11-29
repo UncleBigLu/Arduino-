@@ -58,23 +58,33 @@ bool updatePWM(const uint8_t &index, const uint16_t &lowPos)
 }
 
 void San_Diego(){
-  updatePWM(3, 1040);
+  // Point the arm to the bowl
+  updatePWM(3, 1440);
   delay(600);
-  updatePWM(2,2240);
+  // Put down the robotic arm
+  updatePWM(2, 1280);
   delay(1000);
-  updatePWM(1,2400);
-  delay(600);
-  // updatePWM(0, 1000);
-  //delay(500);
-  updatePWM(1,2080);
-  delay(600);
-  updatePWM(2,1600);
+  // Close the clip
+  updatePWM(0, 1920);
   delay(1000);
-  updatePWM(1, 2400);
-  delay(600);
-  // updatePWM(0,1400);
-  updatePWM(1,2080);
-  delay(600);
-  updatePWM(2,1280);
-  delay(600);
+  // Raise the arm
+  updatePWM(2, 720);
+  delay(1000);
+  // Point to the flower
+  updatePWM(3, 1760);
+  delay(1000);
+  // Put down the arm
+  updatePWM(1, 1280);
+  updatePWM(2, 1520);
+  delay(1000);
+  // Release the clip
+  updatePWM(0, 1280);
+  delay(1000);
+  // Repos the arm
+  updatePWM(2, 720);
+  updatePWM(1, 2240);
+  delay(1000);
+  updatePWM(3, 1200);
+  delay(1000);
+
 }
